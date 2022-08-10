@@ -1,9 +1,11 @@
 <?php
-
+//config
 $servername = "";
 $username = "";
 $password = "";
 $dbname = "";
+$tablename = "";
+
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -19,7 +21,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 function dbInsert($id, $username, $last_message, $times_used){ //ch_stc
     global $conn;
     //ch_stc
-    $sql = "INSERT INTO users (id, username, last_message, times_used) 
+    $sql = "INSERT INTO ".$tablename." (id, username, last_message, times_used) 
     VALUES ('".$id."', '".$username."', '".$last_message."', '".$times_used."')"; //ch_stc
 
     if ($conn->query($sql) === TRUE) {
@@ -32,7 +34,7 @@ function dbInsert($id, $username, $last_message, $times_used){ //ch_stc
 //update $field with $data for $id
 function dbUpdate($id, $field, $data){
   global $conn;
-  $sql = "UPDATE users SET ".$field."='".$data."' WHERE id=".$id;
+  $sql = "UPDATE ".$tablename." SET ".$field."='".$data."' WHERE id=".$id;
   if ($conn->query($sql) === TRUE) {
     return true;
   } else {
@@ -44,7 +46,7 @@ function dbUpdate($id, $field, $data){
 //returns true or false
 function dbCheck($id){
   global $conn;
-  $sql = "SELECT * FROM users WHERE id = '".$id."'";
+  $sql = "SELECT * FROM ".$tablename." WHERE id = '".$id."'";
   $result = $conn->query($sql);
     if ($result->num_rows > 0) {
       return true;
@@ -57,7 +59,7 @@ function dbCheck($id){
 //usage:  $username = dbFind($user_id)['username'];
 function dbFind($id){
   global $conn;
-  $sql = "SELECT * FROM users WHERE id = '".$id."'";
+  $sql = "SELECT * FROM ".$tablename." WHERE id = '".$id."'";
   $result = $conn->query($sql);
 
   if ($result->num_rows > 0) {
@@ -74,7 +76,7 @@ function dbFind($id){
 //}
 function findAll(){
   global $conn;
-  $sql = "SELECT * FROM users";
+  $sql = "SELECT * FROM ".$tablename;
   $result = $conn->query($sql);
   $fetched_users = [];
   if ($result->num_rows > 0) {
