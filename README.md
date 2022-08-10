@@ -38,3 +38,4 @@ foreach(findAll() as $user){
   echo $user;
   
 }
+#Don't forget to change the structure wherever it says ch_stc
