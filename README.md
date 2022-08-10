@@ -40,3 +40,4 @@ foreach(findAll() as $user){
 }
 
 # Don't forget to change the structure wherever it says ch_stc
+And change the table name from "users" to yours!
