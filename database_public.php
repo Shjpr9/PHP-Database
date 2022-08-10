@@ -1,4 +1,5 @@
 <?php
+
 //config
 $servername = "";
 $username = "";
@@ -11,7 +12,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 
 // databese structure:
 // id, username, last_message, times_used
-// you should change it to your own db structure. 
+// you should it to your own db structure. 
 // Wherever you see ch_stc, it means you should change the structure  
 
 
@@ -20,6 +21,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 //well it inserts a new row as it says...
 function dbInsert($id, $username, $last_message, $times_used){ //ch_stc
     global $conn;
+    global $tablename;
     //ch_stc
     $sql = "INSERT INTO ".$tablename." (id, username, last_message, times_used) 
     VALUES ('".$id."', '".$username."', '".$last_message."', '".$times_used."')"; //ch_stc
@@ -34,6 +36,7 @@ function dbInsert($id, $username, $last_message, $times_used){ //ch_stc
 //update $field with $data for $id
 function dbUpdate($id, $field, $data){
   global $conn;
+  global $tablename;
   $sql = "UPDATE ".$tablename." SET ".$field."='".$data."' WHERE id=".$id;
   if ($conn->query($sql) === TRUE) {
     return true;
@@ -46,6 +49,7 @@ function dbUpdate($id, $field, $data){
 //returns true or false
 function dbCheck($id){
   global $conn;
+  global $tablename;
   $sql = "SELECT * FROM ".$tablename." WHERE id = '".$id."'";
   $result = $conn->query($sql);
     if ($result->num_rows > 0) {
@@ -56,9 +60,10 @@ function dbCheck($id){
 }
 
 //find a user (id) from database and return its parameters
-//usage:  $username = dbFind($user_id)['username'];
+//usage example:  $username = dbFind($user_id)['username'];
 function dbFind($id){
   global $conn;
+  global $tablename;
   $sql = "SELECT * FROM ".$tablename." WHERE id = '".$id."'";
   $result = $conn->query($sql);
 
@@ -71,11 +76,12 @@ function dbFind($id){
 }
 
 //get all rows from database and return their id as an array
-//usage: foreach(findAll() as $user){
+//usage example: foreach(findAll() as $user){
 //  echo $user;
 //}
 function findAll(){
   global $conn;
+  global $tablename;
   $sql = "SELECT * FROM ".$tablename;
   $result = $conn->query($sql);
   $fetched_users = [];
