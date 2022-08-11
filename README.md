@@ -40,3 +40,4 @@ foreach(findAll() as $user){
 }
 
 # Don't forget to change the structure wherever it says ch_stc
+"id" is a unique parameter and your database should have "id" column
