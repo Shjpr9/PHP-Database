@@ -12,7 +12,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 
 // databese structure:
 // id, username, last_message, times_used
-// you should it to your own db structure. 
+// you should change it to your own db structure. but you can't change id
 // Wherever you see ch_stc, it means you should change the structure  
 
 
