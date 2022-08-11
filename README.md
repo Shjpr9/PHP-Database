@@ -24,14 +24,14 @@ returns true or false
      dbFind($id)
 find a user (id) from database and return its parameters
 
-usage:  $username = dbFind($user_id)['username'];
+example:  $username = dbFind($user_id)['username'];
      
      
 5.
 
      findAll()
 get all rows from database and return their id as an array. 
-usage: 
+example: 
 
 foreach(findAll() as $user){
 
@@ -40,4 +40,3 @@ foreach(findAll() as $user){
 }
 
 # Don't forget to change the structure wherever it says ch_stc
-And change the table name from "users" to yours!
